@@ -1,0 +1,25 @@
+{
+    "title": "Wazza Drone Parts Scraper Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "URLs of Wazza category pages to start scraping from. Defaults to the drone spare parts category.",
+            "editor": "requestListSources",
+            "prefill": [
+                {
+                    "url": "https://wazza.com.ua/en/spare-parts-for-drones/"
+                }
+            ]
+        },
+        "maxProducts": {
+            "title": "Max Products",
+            "type": "integer",
+            "description": "Maximum number of products to scrape. Use 0 for unlimited.",
+            "default": 0,
+            "minimum": 0
+        }
+    }
+}

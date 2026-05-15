@@ -1,0 +1,16 @@
+{
+  "name": "wazza-scraper",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Apify Actor – Scrape Wazza.com.ua drone spare parts & components",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test src/**/*.test.js"
+  },
+  "dependencies": {
+    "apify": "^3.3.0",
+    "cheerio": "^1.0.0",
+    "crawlee": "^3.16.0"
+  },
+  "packageManager": "pnpm@10.25.0"
+}
