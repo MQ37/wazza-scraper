@@ -2,23 +2,25 @@
 
 Apify Actor that scrapes drone spare parts & components from [wazza.com.ua](https://wazza.com.ua/en/spare-parts-for-drones/).
 
-## What it extracts
+## Output shape
 
-| Field | Description |
-|---|---|
-| `name` | Product name |
-| `productUrl` | Link to individual product page |
-| `imageUrl` | Product image URL |
-| `currentPrice` | Current price (UAH) |
-| `originalPrice` | Original price before discount |
-| `discount` | Discount percentage / text |
-| `stockStatus` | "in stock" / "out of stock" |
-| `category` | Product category (from page heading) |
-| `manufacturer` | Brand / manufacturer |
-| `sku` | Product reference code |
-| `description` | Short product description |
-| `sourcePage` | Page where product was found |
-| `scrapedAt` | Timestamp |
+```json
+{
+  "name": "string",
+  "productUrl": "string (absolute URL)",
+  "imageUrl": "string (absolute URL, may be empty)",
+  "currentPrice": "string",
+  "originalPrice": "string",
+  "discount": "string",
+  "stockStatus": "string",
+  "category": "string (page heading)",
+  "manufacturer": "string",
+  "sku": "string",
+  "description": "string",
+  "sourcePage": "string (URL of the listing page)",
+  "scrapedAt": "ISO 8601 date"
+}
+```
 
 ## Input
 
