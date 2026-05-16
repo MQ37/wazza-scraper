@@ -1,25 +1,18 @@
-# Wazza Drone Parts Scraper
+# wazza-scraper
 
-Apify Actor that scrapes drone spare parts & components from [wazza.com.ua](https://wazza.com.ua/en/spare-parts-for-drones/).
+Apify Actor that scrapes drone spare parts and components from [wazza.com.ua](https://wazza.com.ua/en/spare-parts-for-drones/).
 
-## Output shape
+## What it scrapes
 
-```json
-{
-  "name": "string",
-  "productUrl": "string (absolute URL)",
-  "imageUrl": "string (absolute URL, may be empty)",
-  "currentPrice": "string",
-  "originalPrice": "string",
-  "discount": "string",
-  "stockStatus": "string",
-  "category": "string (page heading)",
-  "manufacturer": "string",
-  "sku": "string",
-  "description": "string",
-  "sourcePage": "string (URL of the listing page)",
-  "scrapedAt": "ISO 8601 date"
-}
+Crawls the Spare Parts for Drones category on wazza.com.ua and extracts product name, pricing (current and original with discount), stock status, manufacturer, SKU, description, and product images.
+
+## Quick start
+
+```bash
+pnpm install
+pnpm dev         # run with tsx
+pnpm build       # compile TypeScript
+pnpm start       # run compiled output
 ```
 
 ## Input
@@ -37,29 +30,39 @@ Apify Actor that scrapes drone spare parts & components from [wazza.com.ua](http
 }
 ```
 
-- `startUrls` — One or more Wazza category URLs to start from
-- `maxProducts` — Limit total products (0 = unlimited)
-- `proxyConfiguration` — Proxy settings (uses Apify Residential by default)
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `startUrls` | array | — | Category URLs to scrape |
+| `maxProducts` | number | `0` (unlimited) | Max products to extract |
+| `proxyConfiguration` | object | Apify Residential | Proxy settings |
 
-## Scope
+## Output schema
 
-Only crawls pages under `/spare-parts-for-drones` — does not drift into full drones, accessories, or other product categories.
-
-## Running locally
-
-```bash
-pnpm install
-node src/main.js
+```json
+{
+  "name": "string",
+  "productUrl": "string (absolute URL)",
+  "imageUrl": "string (absolute URL, may be empty)",
+  "currentPrice": "string",
+  "originalPrice": "string",
+  "discount": "string",
+  "stockStatus": "string",
+  "category": "string",
+  "manufacturer": "string",
+  "sku": "string",
+  "description": "string",
+  "sourcePage": "string (URL of the listing page)",
+  "scrapedAt": "ISO 8601 date"
+}
 ```
 
-## Deploying to Apify
+## Site structure
 
-```bash
-apify push
-```
+wazza.com.ua is a server-rendered e-commerce site. Category pages list products with pagination. Product cards contain pricing, stock status, and images in static HTML. Only scrapes pages under `/spare-parts-for-drones` — does not drift into other categories.
 
-## Tech
+## Tech stack
 
-- **Crawlee** — Cheerio crawler for server-rendered HTML
-- **Apify SDK** — Actor lifecycle, proxy, dataset storage
+- **Crawlee** — CheerioCrawler
 - **Cheerio** — HTML parsing
+- **Apify SDK** — Actor lifecycle, proxy, dataset storage
+- Node.js 22+
